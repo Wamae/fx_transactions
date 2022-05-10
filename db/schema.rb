@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022042113415) do
+ActiveRecord::Schema.define(version: 2022_05_10_120925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -39,9 +39,11 @@ ActiveRecord::Schema.define(version: 2022042113415) do
     t.bigint "customer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "New"
     t.index ["customer_id"], name: "index_fx_transactions_on_customer_id"
     t.index ["in_currency_id"], name: "index_fx_transactions_on_in_currency_id"
     t.index ["out_currency_id"], name: "index_fx_transactions_on_out_currency_id"
+    t.index ["status"], name: "index_fx_transactions_on_status"
   end
 
   add_foreign_key "fx_transactions", "currencies", column: "in_currency_id"
